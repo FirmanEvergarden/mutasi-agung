@@ -4,9 +4,12 @@ import moment from 'moment-timezone';
 import chalk from 'chalk';
 import express from 'express';
 
+const merchant_id = 'OK2353745';
+const merchant_code = '894916017447387782353745OKCT33ED157A61A41108EB5B367883E0A0F8';
+
 async function fetch() {
   try {
-    let anu = await axios.get('https://gateway.okeconnect.com/api/mutasi/qris/OK2361626/771833317439413652361626OKCT409AF42BB29805AEE8C9D0517DDBE24E');
+    let anu = await axios.get(`https://gateway.okeconnect.com/api/mutasi/qris/${merchant_id}/${merchant_code}`);
     let res = anu.data;
     fs.writeFileSync('mutasi.json', JSON.stringify(res, null, 2));
     let currentTime = moment().tz('Asia/Jakarta').format('YYYY-MM-DD HH:mm:ss');
